@@ -1,5 +1,24 @@
 function forms() {
+
+    let mesagge = {
+        loadind:'Загрузка...',
+        success:'Спасибо! Скоро мы с вами свяжемся',
+        failure:'Что-то пошло не так...'
+    };
+    let form = document.querySelector('.main-form'),
+        formContact = document.querySelector('#form'),
+        input = document.getElementsByTagName('input'),
+        statusMessage = document.createElement('div');
+        for (let i =2; i < input.length;i++){
+            let inputAll = input[i];
+            inputAll.setAttribute('autocomplete',"off"); 
+            inputAll.addEventListener('input', function(){
+                input[3].value = input[3].value.replace(/[^+0-9]/, '');
+                input[4].value = input[4].value.replace(/[^+0-9]/, '');
+            });
+        } 
     function sendForm (elem){  
+             
             elem.addEventListener('submit', function(event){
                 event.preventDefault();
                 elem.appendChild(statusMessage);
@@ -38,5 +57,6 @@ function forms() {
             });
         }
     sendForm(form);
-    sendForm(formContact);
+    sendForm(formContact); 
+}
 module.exports = forms;
