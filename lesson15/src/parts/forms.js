@@ -1,30 +1,8 @@
 function forms() {
-
-    let mesagge = {
-        loadind:'Загрузка...',
-        success:'Спасибо! Скоро мы с вами свяжемся',
-        failure:'Что-то пошло не так...'
-    };
-    let formAll = document.getElementsByTagName('form'),
-        input = document.getElementsByTagName('input'),
-        statusMessage = document.createElement('div');
-
-    for (let i =2; i < input.length;i++){
-        let inputAll = input[i];
-        inputAll.setAttribute('autocomplete',"off"); 
-
-        inputAll.addEventListener('input', function(){
-            input[3].value = input[3].value.replace(/[^+0-9]/, '');
-            input[4].value = input[4].value.replace(/[^+0-9]/, '');
-        });
-    } 
-    function sendForm (elem){
-        for (let i =0; i< formAll.length;i++){
-            let formAlly = formAll[i];  
-             
-            formAlly.addEventListener('submit', function(event){
+    function sendForm (elem){  
+            elem.addEventListener('submit', function(event){
                 event.preventDefault();
-                formAlly.appendChild(statusMessage);
+                elem.appendChild(statusMessage);
                 let formData = new FormData(elem);
                 function postData(data){
                     return new Promise(function(resolve,reject){
@@ -59,8 +37,6 @@ function forms() {
                             .then(clearInput)      
             });
         }
-    }
-    sendForm(formAll[0]);
-    sendForm(formAll[1]);
-}
+    sendForm(form);
+    sendForm(formContact);
 module.exports = forms;
